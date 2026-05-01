@@ -1,0 +1,31 @@
+// Pin configuration
+const uint8_t LED_LEFT  = 3;
+const uint8_t LED_RIGHT = 4;
+const uint8_t BUZZER    = 7;
+
+// Timing
+const uint16_t STEP_DELAY_MS = 150;
+
+// Frequencies
+const uint16_t TONE_LEFT  = 1000;
+const uint16_t TONE_RIGHT = 1500;
+
+void setState(bool leftLed, bool rightLed, uint16_t frequency) {
+  digitalWrite(LED_LEFT, leftLed);
+  digitalWrite(LED_RIGHT, rightLed);
+  tone(BUZZER, frequency);
+}
+
+void setup() {
+  pinMode(LED_LEFT, OUTPUT);
+  pinMode(LED_RIGHT, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+}
+
+void loop() {
+  setState(true, false, TONE_LEFT);
+  delay(STEP_DELAY_MS);
+
+  setState(false, true, TONE_RIGHT);
+  delay(STEP_DELAY_MS);
+}
